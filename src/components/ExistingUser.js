@@ -13,12 +13,17 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import Footer from './Footer';
-import {  useNavigate } from 'react-router-dom';
+//import ExFooter from '../ExFooter';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ContentPage1 from './ContentPagee';
+//import MyImageCarousel from '../MyImageCarousel';
+//import MultiActionAreaCard from './MultiActionArea';
+// import {  useNavigate } from 'react-router-dom';
 // import Centrecomponent from './Centrecomponent';
 // import ActionAreaCard from './ActionAreaCard';
-import { user } from './Usercontext';
-const categories = ['Face Care', 'Hair Care', 'Skin Care', 'Personal Hygiene', 'Cosmetics','Lip Care','Eye Care','Foot Care','Accessories'];
+import Logout from './Logout'
+const categories = ['Face Care', 'Hair Care', 'Skin Care', 'Personal Hygiene', 'Cosmetics','Lip Care','Eye Care','Foot Care',<a href='/products'>Products</a>,<Logout></Logout>];
 
 const additionalItems = ['Daily Deals', 'Brands', 'New Release', 'Styling Tips', 'Special Day Wear'];
 
@@ -32,10 +37,11 @@ const App = () => {
   const handleDrawerClose = () => {
     setDrawerOpen(false);
   };
-  const navigate=useNavigate();
-  const handleLoginClick = () => {
-    navigate('/login')
-  };
+//   const navigate=useNavigate();
+
+//   const handleLoginClick = () => {
+//     navigate('/login')
+//   };
 
   const handleContactClick = () => {
     console.log('Clicked on contact');
@@ -46,13 +52,20 @@ const App = () => {
     // Add logic to handle category click
   };
 
+  const handleProfileClick=()=>{
+
+  }
+  const handleCartClick=()=>{
+
+  }
+
   const handleAdditionalItemClick = (item) => {
     console.log(`Clicked on additional item: ${item}`);
     // Add logic to handle additional item click
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh',backgroundRepeat:'no-repeat' ,background: `url(https://www.itl.cat/pngfile/big/193-1931048_fashion-wear-background-fashion-powerpoint-backgrounds.jpg` }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: ``}}>
       {/* Header */}
       <AppBar position="static" style={{backgroundColor:'	#004d4d'}}>
         <Toolbar>
@@ -65,7 +78,7 @@ const App = () => {
           <Typography variant="h6" style={{ flexGrow: 1,fontFamily:'brush script'}}>
             ...YOUR FASHION STATEMENT...
           </Typography>
-          <div style={{ display: 'flex', alignItems: 'centre' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <div>
               <SearchIcon />
             </div>
@@ -73,32 +86,33 @@ const App = () => {
                 id="outlined-basic"
                 label="Search"
                 variant="filled"
-                InputProps={{ 'aria-label': 'search' ,style: { color: 'white' }}}
-                InputLabelProps={{
-                  style: { color: 'white' } // Change 'green' to the desired label color
-                }}
+                InputProps={{ 'aria-label': 'search' }}
+            style={{paddingRight: '112px'}}
               />
           </div>
-          <Button color="inherit" onClick={handleLoginClick}>
-            Login
-          </Button>
+            <IconButton onClick={handleProfileClick}>
+             <AccountCircleIcon style={{width:'40px',height:'30px'}}/>
+            </IconButton>
+            <IconButton onClick={handleCartClick}>
+              <ShoppingCartIcon/>
+            </IconButton>
           <Button color="inherit" onClick={handleContactClick}>
-            Help
+             Orders
           </Button>
-     
         </Toolbar>
       </AppBar>
 
       {/* Navigation Bar */}
-      <AppBar position="relative" color="default" gap ='10px'>
+      <AppBar position="relative" color="default" style={{backgroundColor:''}}>
         <Toolbar>
           {categories.map((category, index) => (
-            <Button key={index} onClick={() => handleCategoryClick(category)}>
+            <Button key={index} onClick={() => handleCategoryClick(category)} style={{marginLeft:'50px'}}>
               {category}
             </Button>
           ))}
         </Toolbar>
       </AppBar>
+      
 
       {/* Side Drawer */}
       <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose} width={300}>
@@ -114,17 +128,21 @@ const App = () => {
       {/* Main Content */}
        <div>
         {/* Your main content goes here */}
-        {/* <Centrecomponent/>
-        <div style={{marginLeft:'20px'}}>
-        <ActionAreaCard/> }
-          </div>*/}
-          <br></br>
-          <p style={{fontSize:'55px',paddingLeft:'600px',motion:''}}>Welcome to Glam Mart, <br></br><strong>your FASHION DESTINATION !</strong></p>
-          <p style={{fontSize:'55px',paddingLeft:'700px',fontFamily:'Brush Script MT'}}>... Brush up your shine ...</p>
+         <div>
+            <ContentPage1/>
+        </div> 
+        {/* <div>
+          <MyImageCarousel/>
+        </div> */}
+        {/* <div>
+            <MultiActionAreaCard/>
+
+        </div> */}
+        
       </div> 
             
       {/* Footer */}
-      <Footer onClick={() => {}} />
+      {/* <ExFooter onClick={() => {}} /> */}
     </div>
   );
 };
